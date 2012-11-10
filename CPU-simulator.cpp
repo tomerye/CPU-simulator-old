@@ -9,14 +9,14 @@
 #include <string.h>
 
 
-void ParseConfigurationFile(_TCHAR *path, ConfigurationStruk *configuration);
-void ReadInitMemory(_TCHAR *file_name, Memory *memory);
-int WriteRegisteryDumpToFile(_TCHAR *file_name, RegisterDump regdump);
-int WriteMemoryDumpToFile(_TCHAR *file_name, Memory memory);
-int WriteExcTimeToFile(_TCHAR *file_name, int time);
-int WriteExcCommandNumberToFile(_TCHAR *file_name, int command_number);
+void ParseConfigurationFile(char *path, ConfigurationStruk *configuration);
+void ReadInitMemory(char *file_name, Memory *memory);
+int WriteRegisteryDumpToFile(char *file_name, RegisterDump regdump);
+int WriteMemoryDumpToFile(char *file_name, Memory memory);
+int WriteExcTimeToFile(char *file_name, int time);
+int WriteExcCommandNumberToFile(char *file_name, int command_number);
 
-int _tmain(int argc, _TCHAR* argv[])
+int _tmain(int argc, char* argv[])
 {
 	if(argc!=2)
 	{
@@ -37,7 +37,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
-void ParseConfigurationFile(_TCHAR *path, ConfigurationStruk *configuration)
+void ParseConfigurationFile(char *path, ConfigurationStruk *configuration)
 {
 
 }
