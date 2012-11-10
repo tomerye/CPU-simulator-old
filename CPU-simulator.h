@@ -38,7 +38,13 @@ typedef struct RegisterDump_
 
 typedef int Memory;
 
-
+void ParseConfigurationFile(char *path, ConfigurationStruk *configuration);
+void ReadInitMemory(char *file_name, Memory *memory);
+int WriteRegisteryDumpToFile(char *file_name, RegisterDump regdump);
+int WriteMemoryDumpToFile(char *file_name, Memory memory);
+int WriteExcTimeToFile(char *file_name, int time);
+int WriteExcCommandNumberToFile(char *file_name, int command_number);
+static int handler(void* user, const char* section, const char* name,const char* value);
 
 
 #endif
