@@ -26,26 +26,28 @@ typedef struct ConfigurationStruk_
 
 } ConfigurationStruk;
 
-
 #define	NUMBER_OF_REGISTERS 32
-
 typedef struct RegisterDump_
 {
 	int reg[NUMBER_OF_REGISTERS];
 } RegisterDump;
 
+#define MEMORY_SIZE 65536
+typedef struct Memory_
+{
+	int mem[MEMORY_SIZE];
+}Memory;
 
 
-typedef int Memory;
-
-void ParseConfigurationFile(char *path, ConfigurationStruk *configuration);
+#define MAX_LINE_SIZE 50
 void ReadInitMemory(char *file_name, Memory *memory);
-int WriteRegisteryDumpToFile(char *file_name, RegisterDump regdump);
-int WriteMemoryDumpToFile(char *file_name, Memory memory);
+int WriteRegisteryDumpToFile(char *file_name, RegisterDump *regdump);
+int WriteMemoryDumpToFile(char *file_name, Memory *memory);
 int WriteExcTimeToFile(char *file_name, int time);
 int WriteExcCommandNumberToFile(char *file_name, int command_number);
+int ParseCMDfile(char *file_name, Memory *memory, RegisterDump *regdump);
 static int handler(void* user, const char* section, const char* name,const char* value);
-
+void ExecuteCMD(char *lineBuffer,Memory *memory ,RegisterDump *regdump);
 
 #endif
 

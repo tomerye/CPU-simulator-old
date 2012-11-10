@@ -14,7 +14,7 @@ int _tmain(int argc, char* argv[])
 {
 	ConfigurationStruk configuration;
 	Memory memory;
-
+	int tmp=10;
 
 	if(argc!=2)
 	{
@@ -22,25 +22,21 @@ int _tmain(int argc, char* argv[])
 		exit(1);
 	}
 
-	
-    if (ini_parse(argv[1], handler, &configuration) < 0) {
-        printf("Can't load '%s' file\n",argv[1]);
-        return 1;
-    }
 
-	printf("%d",configuration.ghr_width);
+	if (ini_parse(argv[1], handler, &configuration) < 0) {
+		printf("Can't load '%s' file\n",argv[1]);
+		return 1;
+	}
+
+	printf("%X",tmp);
 	//	ReadInitMemory(argv[3],&memory);
 
 	getch();
 	return 0;
 }
 
-void ParseConfigurationFile(char *path, ConfigurationStruk *configuration)
-{
 
-}
-
-
+//private function used by ini_parse
 static int handler(void* user, const char* section, const char* name,
 				   const char* value)
 {
@@ -124,10 +120,11 @@ static int handler(void* user, const char* section, const char* name,
 }
 
 
-int WriteRegisteryDumpToFile(char *file_name, RegisterDump regdump)
+int WriteRegisteryDumpToFile(char *file_name, RegisterDump *regdump)
 {
 	FILE *file=fopen(file_name,"w");
 	int i;
+
 	if (file==NULL)
 	{
 		printf("error in write registery dump file\n %s %s ",__FILE__,__LINE__);
@@ -136,8 +133,70 @@ int WriteRegisteryDumpToFile(char *file_name, RegisterDump regdump)
 
 	for(i=0;i<NUMBER_OF_REGISTERS;i++)
 	{
-		fprintf(file,"$%d %d\n",i,regdump.reg[i]);
+		fprintf(file,"$%d %d\n",i,regdump->reg[i]);
 	}
 
 	fclose(file);
+	return 1;
+}
+
+
+int WriteMemoryDumpToFile(char *file_name, Memory *memory)
+{
+	FILE *file=fopen(file_name,"w");
+	int i;
+
+	if (file==NULL)
+	{
+		printf("error in write memory dump file\n %s %s ",__FILE__,__LINE__);
+		return 0;
+	}
+
+	for(i=0;i<MEMORY_SIZE;i++)
+	{
+		if(i%8==0)
+			fprintf(file,"%X ",memory->mem[i]);
+		else
+			fprintf(file,"\n");
+	}
+
+	fclose(file);
+	return 1;
+}
+
+
+int ParseCMDfile(char *file_name, Memory *memory, RegisterDump *regdump)
+{
+	FILE *file=fopen(file_name,"w");
+	char lineBuffer[MAX_LINE_SIZE];
+
+	if (file==NULL)
+	{
+		printf("error in write CMD file\n %s %s ",__FILE__,__LINE__);
+		return 0;
+	}
+
+	while ( fgets ( lineBuffer, sizeof lineBuffer, file ) != NULL ) 
+	{
+		ExecuteCMD(lineBuffer,memory, regdump);
+	}
+
+	fclose(file);
+	return 1;
+}
+
+
+void ExecuteCMD(char *lineBuffer,Memory *memory ,RegisterDump *regdump)
+{
+	char *p;//iterator over the string to tokenize
+	char cmd[5][10];//to store the command  line
+	p=strtok(lineBuffer, " ");
+	while(p!=NULL)
+	{
+		//TODO
+	
+		p = strtok (NULL, " ");
+	
+	}
+	
 }
