@@ -6,7 +6,7 @@ home page for more info:
 http://code.google.com/p/inih/
 
 */
-
+#include "stdafx.h"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>

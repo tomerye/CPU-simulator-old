@@ -3,7 +3,7 @@
 #ifndef _CPU_SIMULATOR_H
 #define _CPU_SIMULATOR_H
 
-
+//struct that contain the ini file parameters
 typedef struct ConfigurationStruk_
 {
 	int addsub_delay;

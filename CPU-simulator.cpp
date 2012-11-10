@@ -15,25 +15,29 @@ int WriteRegisteryDumpToFile(char *file_name, RegisterDump regdump);
 int WriteMemoryDumpToFile(char *file_name, Memory memory);
 int WriteExcTimeToFile(char *file_name, int time);
 int WriteExcCommandNumberToFile(char *file_name, int command_number);
-
+static int handler(void* user, const char* section, const char* name,const char* value);
 int _tmain(int argc, char* argv[])
 {
+	ConfigurationStruk configuration;
+	Memory memory;
+
+
 	if(argc!=2)
 	{
 		printf("Wronge command line arguments number!\n");
 		exit(1);
 	}
 
-	ConfigurationStruk configuration;
+	
     if (ini_parse(argv[1], handler, &configuration) < 0) {
-        printf("Can't load 'test.ini'\n");
+        printf("Can't load '%s' file\n",argv[1]);
         return 1;
     }
 
-	Memory memory;
+	printf("%d",configuration.ghr_width);
 	//	ReadInitMemory(argv[3],&memory);
 
-
+	getch();
 	return 0;
 }
 
