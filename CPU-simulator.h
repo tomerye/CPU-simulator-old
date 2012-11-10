@@ -25,7 +25,17 @@ typedef struct ConfigurationStruk_
 	int mem_access_delay;
 
 } ConfigurationStruk;
-typedef int RegisterDump;
+
+
+#define	NUMBER_OF_REGISTERS 32
+
+typedef struct RegisterDump_
+{
+	int reg[NUMBER_OF_REGISTERS];
+} RegisterDump;
+
+
+
 typedef int Memory;
 
 

@@ -128,3 +128,22 @@ static int handler(void* user, const char* section, const char* name,
 
 	return 1;
 }
+
+
+int WriteRegisteryDumpToFile(char *file_name, RegisterDump regdump)
+{
+	FILE *file=fopen(file_name,"w");
+	int i;
+	if (file==NULL)
+	{
+		printf("error in write registery dump file\n %s %s ",__FILE__,__LINE__);
+		return 0;
+	}
+
+	for(i=0;i<NUMBER_OF_REGISTERS;i++)
+	{
+		fprintf(file,"$%d %d\n",i,regdump.reg[i]);
+	}
+
+	fclose(file);
+}
