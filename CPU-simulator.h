@@ -41,7 +41,7 @@ typedef struct Memory_
 
 #define MAX_LINE_SIZE 50
 void ReadInitMemory(char *file_name, Memory *memory);
-int WriteRegisteryDumpToFile(char *file_name, RegisterDump *regdump);
+int WriteRegisterDumpToFile(char *file_name, RegisterDump *regdump);
 int WriteMemoryDumpToFile(char *file_name, Memory *memory);
 int WriteExcTimeToFile(char *file_name, int time);
 int WriteExcCommandNumberToFile(char *file_name, int command_number);

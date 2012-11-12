@@ -120,7 +120,7 @@ static int handler(void* user, const char* section, const char* name,
 }
 
 
-int WriteRegisteryDumpToFile(char *file_name, RegisterDump *regdump)
+int WriteRegisterDumpToFile(char *file_name, RegisterDump *regdump)
 {
 	FILE *file=fopen(file_name,"w");
 	int i;
